@@ -66,8 +66,10 @@ const Sidebar = ({ children }) => {
         </div>
         <div className='w-[260px] h-screen bg-green-200'>
         </div>
-        <div className='h-[1000px] flex-grow bg-gray-400'>
-
+        <div className='min-h-screen flex-grow bg-gray-200 px-[20px] pt-[20px]'>
+            <div className='w-full max-w-screen-lg mx-auto'>
+                {children}
+            </div>
         </div>
     </div>
   )
