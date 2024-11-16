@@ -5,8 +5,17 @@ import { LuFileClock } from "react-icons/lu";
 import { FiFileText } from "react-icons/fi";
 import { BsPersonGear } from "react-icons/bs";
 import Menu from './Menu';
+import { useLocation } from 'react-router-dom';
 
 const Sidebar = ({ children }) => {
+
+    const { pathname } = useLocation();
+    const prefixPathname = "/" + pathname.split("/")[1];
+
+
+    function isActive(path) {
+        return path === prefixPathname;
+    }
 
     const menuList = [
         {
@@ -41,8 +50,9 @@ const Sidebar = ({ children }) => {
                 <p className='text-[20px]'>ຂາໄກ່ເຈ້ຕຸ້ຍ</p>
             </div>
             <div className='mt-10'>
-                <Menu icon={<RiHandCoinLine />} title={"ເມນູ"} isActive={false} />
-                <Menu icon={<RiHandCoinLine />} title={"ເມນູ"} isActive={true} />
+                {menuList.map((item, index)=>(
+                    <Menu key={index} icon={item.icon} title={item.title} isActive={isActive(item.path)} />
+                ))}
             </div>
         </div>
         <div className='w-[260px] h-screen bg-green-200'>
