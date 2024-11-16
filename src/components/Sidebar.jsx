@@ -1,5 +1,6 @@
 import React from 'react'
 import Logo from '../../public/images/logo.png'
+import { RiHandCoinLine } from "react-icons/ri";
 
 const Sidebar = ({ children }) => {
   return (
@@ -12,7 +13,18 @@ const Sidebar = ({ children }) => {
                 <p className='text-[20px]'>ຂາໄກ່ເຈ້ຕຸ້ຍ</p>
             </div>
             <div className='mt-10'>
-                menu
+                <div className='w-full bg-gray-200 rounded-full flex gap-4 py-[8px] pl-[40px] items-center'>
+                    <div className='w-[32px] h-[32px] flex justify-center items-center'>
+                        <RiHandCoinLine className='text-green-500 text-[24px]' />
+                    </div>
+                    <p>ເມນູ</p>
+                </div>
+                <div className='w-full mt-2 bg-green-500 rounded-full flex gap-4 py-[8px] pl-[40px] items-center'>
+                    <div className='w-[32px] h-[32px] flex justify-center items-center'>
+                        <RiHandCoinLine className='text-white text-[24px]' />
+                    </div>
+                    <p className='text-white'>ເມນູ</p>
+                </div>
             </div>
         </div>
         <div className='w-[260px] h-screen bg-green-200'>
