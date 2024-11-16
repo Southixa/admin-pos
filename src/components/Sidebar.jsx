@@ -4,6 +4,7 @@ import { RiHandCoinLine } from "react-icons/ri";
 import { LuFileClock } from "react-icons/lu";
 import { FiFileText } from "react-icons/fi";
 import { BsPersonGear } from "react-icons/bs";
+import { RxExit } from "react-icons/rx";
 import Menu from './Menu';
 import { useLocation } from 'react-router-dom';
 
@@ -53,6 +54,14 @@ const Sidebar = ({ children }) => {
                 {menuList.map((item, index)=>(
                     <Menu key={index} icon={item.icon} title={item.title} isActive={isActive(item.path)} />
                 ))}
+            </div>
+            <div className='mt-[150px]'>
+                <div className='w-full flex items-center gap-4'>
+                    <div className='w-[32px] h-[32px] flex justify-center items-center'>
+                        <RxExit className='text-green-500 text-[20px]' />
+                    </div>
+                    <p className='text-green-500'>ອອກຈາກລະບົບ</p>
+                </div>
             </div>
         </div>
         <div className='w-[260px] h-screen bg-green-200'>
