@@ -1,8 +1,36 @@
 import React from 'react'
 import Logo from '../../public/images/logo.png'
 import { RiHandCoinLine } from "react-icons/ri";
+import { LuFileClock } from "react-icons/lu";
+import { FiFileText } from "react-icons/fi";
+import { BsPersonGear } from "react-icons/bs";
+import Menu from './Menu';
 
 const Sidebar = ({ children }) => {
+
+    const menuList = [
+        {
+            icon: <RiHandCoinLine />,
+            title: "ເມນູ",
+            path: "/"
+        },
+        {
+            icon: <LuFileClock />,
+            title: "ປະຫວັດການຂາຍ",
+            path: "/history"
+        },
+        {
+            icon: <FiFileText />,
+            title: "ຈັດການເມນູ",
+            path: "/product"
+        },
+        {
+            icon: <BsPersonGear />,
+            title: "ຈັດການພະນັກງານ",
+            path: "/staff"
+        },
+    ]
+
   return (
     <div className='w-full min-h-screen bg-gray-200 flex'>
         <div className='w-[260px] h-screen bg-white fixed z-10 px-[20px] py-[24px]'>
@@ -13,18 +41,8 @@ const Sidebar = ({ children }) => {
                 <p className='text-[20px]'>ຂາໄກ່ເຈ້ຕຸ້ຍ</p>
             </div>
             <div className='mt-10'>
-                <div className='w-full bg-gray-200 rounded-full flex gap-4 py-[8px] pl-[40px] items-center'>
-                    <div className='w-[32px] h-[32px] flex justify-center items-center'>
-                        <RiHandCoinLine className='text-green-500 text-[24px]' />
-                    </div>
-                    <p>ເມນູ</p>
-                </div>
-                <div className='w-full mt-2 bg-green-500 rounded-full flex gap-4 py-[8px] pl-[40px] items-center'>
-                    <div className='w-[32px] h-[32px] flex justify-center items-center'>
-                        <RiHandCoinLine className='text-white text-[24px]' />
-                    </div>
-                    <p className='text-white'>ເມນູ</p>
-                </div>
+                <Menu icon={<RiHandCoinLine />} title={"ເມນູ"} isActive={false} />
+                <Menu icon={<RiHandCoinLine />} title={"ເມນູ"} isActive={true} />
             </div>
         </div>
         <div className='w-[260px] h-screen bg-green-200'>
