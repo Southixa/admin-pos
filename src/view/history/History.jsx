@@ -1,8 +1,11 @@
 import React from 'react'
+import Sidebar from '../../components/Sidebar'
 
 const History = () => {
   return (
-    <div>History</div>
+    <Sidebar>
+        <div>history page</div>
+    </Sidebar>
   )
 }
 

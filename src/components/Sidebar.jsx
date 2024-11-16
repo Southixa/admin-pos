@@ -52,7 +52,7 @@ const Sidebar = ({ children }) => {
             </div>
             <div className='mt-10'>
                 {menuList.map((item, index)=>(
-                    <Menu key={index} icon={item.icon} title={item.title} isActive={isActive(item.path)} />
+                    <Menu key={index} icon={item.icon} title={item.title} isActive={isActive(item.path)} path={item.path} />
                 ))}
             </div>
             <div className='mt-[150px]'>
