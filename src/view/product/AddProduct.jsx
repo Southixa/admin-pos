@@ -21,6 +21,10 @@ const AddProduct = () => {
                         </div>
                     </div>
                 </div>
+                <p className='mt-[16px] text-gray-600'>ຊື່ເມນູ</p>
+                <input type='text' className='bg-gray-100 w-full rounded-[12px] border border-garay-200 px-[16px] py-[8px] placeholder:text-[14px] placeholder:text-gray-300' placeholder='ຊື່ເມນູ...' />
+                <p className='mt-[16px] text-gray-600'>ລາຄາ</p>
+                <input type='number' className='bg-gray-100 w-full rounded-[12px] border border-garay-200 px-[16px] py-[8px] placeholder:text-[14px] placeholder:text-gray-300' placeholder='ໃສ່ລາຄາ...' />
             </div>
         </div>
     </Sidebar>
