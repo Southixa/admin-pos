@@ -19,7 +19,7 @@ const Menu = ({ icon, title, isActive, path }) => {
 
   return (
     <Link to={path}>
-        <div className='w-full mt-2 rounded-full flex gap-4 py-[8px] pl-[40px] items-center'>
+        <div className='hover:bg-gray-200 transition-all duration-100 w-full mt-2 rounded-full flex gap-4 py-[8px] pl-[40px] items-center'>
             <div className='w-[32px] h-[32px] flex justify-center items-center text-green-500 text-[24px]'>
                 {icon}
             </div>
