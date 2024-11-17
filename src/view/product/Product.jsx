@@ -27,7 +27,7 @@ const Product = () => {
       </div>
 
       <div className='w-full min-h-[300px] bg-white mt-[16px] rounded-sm p-2'>
-        <table className='w-full bg-gray-300'>
+        <table className='w-full'>
           <thead>
             <tr className='border-b border-gray-800'>
               <td className='py-[4px]'>ລຳດັບ</td>
@@ -40,7 +40,7 @@ const Product = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr className='border-b border-gray-500'>
               <td>1</td>
               <td className='py-[8px]'>
                 <div className='w-[60px] h-[60px] bg-gray-400'>
@@ -50,12 +50,12 @@ const Product = () => {
               <td>ທອດຂາໄກ່</td>
               <td>ທອດ</td>
               <td>250,000 ກີບ</td>
-              <td>
+              <td className='w-[150px]'>
                 <button className='px-[16px] py-[4px] bg-green-500 rounded-md text-white'>
                   ແກ້ໄຂ
                 </button>
               </td>
-              <td>
+              <td className='w-[150px]'>
                 <button className='px-[24px] py-[4px] bg-red-500 rounded-md text-white'>
                   ລົບ
                 </button>
