@@ -27,7 +27,7 @@ const RouterPath = () => {
             element: <AddProduct />,
         },
         {
-            path: "/category",
+            path: "/product/category",
             element: <Category/>
         },
         {

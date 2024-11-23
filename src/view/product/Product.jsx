@@ -15,9 +15,11 @@ const Product = () => {
           <button className='text-white bg-green-500 px-[24px] py-[8px] rounded-md'>
             ເມນູທັງໝົດ
           </button>
-          <button className='text-gray-800 bg-white px-[24px] py-[8px] rounded-md'>
-            ໝວດໝູ່
-          </button>
+          <Link to="/product/category" >
+            <button className='text-gray-800 bg-white px-[24px] py-[8px] rounded-md'>
+              ໝວດໝູ່
+            </button>
+          </Link>
         </div>
         <div>
           <Link to="/product/add">
