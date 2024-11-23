@@ -4,6 +4,7 @@ import { IoMenu } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
 import Searchbar from '../../components/Searchbar';
 import { IoAdd } from "react-icons/io5";
+import { Link } from 'react-router-dom';
 
 const Product = () => {
   return (
@@ -19,10 +20,12 @@ const Product = () => {
           </button>
         </div>
         <div>
-          <button className='flex items-center gap-2 bg-white px-[24px] py-[8px] rounded-md'>
-            <IoAdd />
-            <p>ເພີ່ມເມນູ</p>
-          </button>
+          <Link to="/product/add">
+            <button className='flex items-center gap-2 bg-white px-[24px] py-[8px] rounded-md'>
+              <IoAdd />
+              <p>ເພີ່ມເມນູ</p>
+            </button>
+          </Link>
         </div>
       </div>
 
