@@ -50,16 +50,18 @@ const Category = () => {
                     </div>
                 </div>
             ))}
-            <div className='w-[130px] bg-white rounded-2xl overflow-hidden shadow-sm'>
-                <div className='w-full h-[90px] flex justify-center items-center'>
-                    <div className='w-[36px] h-[36px] bg-green-500 rounded-full flex justify-center items-center'>
-                        <FaPlus className='text-white' />
+            <Link to="/product/category/add">
+                <div className='w-[130px] bg-white rounded-2xl overflow-hidden shadow-sm'>
+                    <div className='w-full h-[90px] flex justify-center items-center'>
+                        <div className='w-[36px] h-[36px] bg-green-500 rounded-full flex justify-center items-center'>
+                            <FaPlus className='text-white' />
+                        </div>
+                    </div>
+                    <div className='w-full h-[60px]  p-2'>
+                        <p className='text-center'>ເພີ່ມ</p>
                     </div>
                 </div>
-                <div className='w-full h-[60px]  p-2'>
-                    <p className='text-center'>ເພີ່ມ</p>
-                </div>
-            </div>
+            </Link>
         </div>
     </Sidebar>
   )

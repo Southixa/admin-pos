@@ -7,6 +7,7 @@ import History from '../view/history/History'
 import Staff from '../view/staff/Staff'
 import AddProduct from '../view/product/AddProduct'
 import Category from '../view/product/Category'
+import AddCategory from '../view/product/AddCategory'
 
 const RouterPath = () => {
     const router = createBrowserRouter([
@@ -29,6 +30,10 @@ const RouterPath = () => {
         {
             path: "/product/category",
             element: <Category/>
+        },
+        {
+            path: "/product/category/add",
+            element: <AddCategory/>
         },
         {
             path: "/history",
