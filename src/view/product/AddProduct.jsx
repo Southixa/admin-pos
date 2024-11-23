@@ -4,11 +4,18 @@ import { FaChevronLeft } from "react-icons/fa6";
 import { CiCamera } from "react-icons/ci";
 import UploadImage from '../../components/UploadImage';
 import { useNavigate } from 'react-router-dom';
-import { Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import * as Yup from 'yup';
 
 const AddProduct = () => {
 
     const navigate = useNavigate();
+
+    const validationSchema = Yup.object().shape({
+        name: Yup.string().required("ກະລຸນາໃສ່ຂໍ້ມູນ"),
+        price: Yup.number().typeError("ເປັນຕົວເລກເທົ່ານັ້ນ").required("ກະລຸນາໃສ່ຂໍ້ມູນ"),
+        category: Yup.string().required("ກະລຸນາໃສ່ຂໍ້ມູນ"),
+    })
 
   return (
     <Sidebar>
@@ -20,6 +27,7 @@ const AddProduct = () => {
         <div className='w-full flex justify-center items-center mt-4'>
             <div className='w-[400px] bg-white rounded-sm p-[20px]'>
                 <Formik
+                validationSchema={validationSchema}
                 enableReinitialize={true}
                 initialValues={{
                     name: "",
@@ -37,21 +45,24 @@ const AddProduct = () => {
                                 <UploadImage />
                             </div>
                             <p className='mt-[16px] text-gray-600'>ຊື່ເມນູ</p>
-                            <input type='text' className='bg-gray-100 w-full rounded-[12px] border border-garay-200 px-[16px] py-[8px] placeholder:text-[14px] placeholder:text-gray-300' placeholder='ຊື່ເມນູ...' />
+                            <Field type='text' name="name" className='bg-gray-100 w-full rounded-[12px] border border-garay-200 px-[16px] py-[8px] placeholder:text-[14px] placeholder:text-gray-300' placeholder='ຊື່ເມນູ...' />
+                            <ErrorMessage component={"div"} className='text-red-500' name="name" />
                             <p className='mt-[16px] text-gray-600'>ລາຄາ</p>
-                            <input type='number' className='bg-gray-100 w-full rounded-[12px] border border-garay-200 px-[16px] py-[8px] placeholder:text-[14px] placeholder:text-gray-300' placeholder='ໃສ່ລາຄາ...' />
+                            <Field type='number' name="price" className='bg-gray-100 w-full rounded-[12px] border border-garay-200 px-[16px] py-[8px] placeholder:text-[14px] placeholder:text-gray-300' placeholder='ໃສ່ລາຄາ...' />
+                            <ErrorMessage component={"div"} className='text-red-500' name="price" />
                             <p className='mt-[16px] text-gray-600'>ໝວດໝູ່</p>
-                            <select className='w-full bg-green-500 text-white rounded-[12px] px-[16px] py-[8px] text-center'>
+                            <Field as="select" name="category" className='w-full bg-green-500 text-white rounded-[12px] px-[16px] py-[8px] text-center'>
                                 <option value="1">ທອດ</option>
                                 <option value="2">ຕຳ</option>
                                 <option value="3">ຍຳ</option>
-                            </select>
+                            </Field>
+                            <ErrorMessage component={"div"} className='text-red-500' name="category" />
                             <div className='w-full  mt-[70px] flex justify-between gap-4'>
                                 <div className='w-full'>
                                     <button className='text-green-500 border border-green-500 py-[10px] w-full rounded-[12px]'>ຍົກເລີກ</button>
                                 </div>
                                 <div className='w-full'>
-                                    <button className='text-white bg-green-500 py-[10px] w-full rounded-[12px]'>ບັນທຶກ</button>
+                                    <button type="submit" className='text-white bg-green-500 py-[10px] w-full rounded-[12px]'>ບັນທຶກ</button>
                                 </div>
                             </div>
                         </Form>
