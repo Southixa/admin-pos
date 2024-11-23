@@ -5,17 +5,11 @@ import { CiCamera } from "react-icons/ci";
 import UploadImage from '../../components/UploadImage';
 import { useNavigate } from 'react-router-dom';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import * as Yup from 'yup';
+import { validationSchema } from '../../utils';
 
 const AddProduct = () => {
 
     const navigate = useNavigate();
-
-    const validationSchema = Yup.object().shape({
-        name: Yup.string().required("ກະລຸນາໃສ່ຂໍ້ມູນ"),
-        price: Yup.number().typeError("ເປັນຕົວເລກເທົ່ານັ້ນ").required("ກະລຸນາໃສ່ຂໍ້ມູນ"),
-        category: Yup.string().required("ກະລຸນາໃສ່ຂໍ້ມູນ"),
-    })
 
   return (
     <Sidebar>
@@ -27,7 +21,7 @@ const AddProduct = () => {
         <div className='w-full flex justify-center items-center mt-4'>
             <div className='w-[400px] bg-white rounded-sm p-[20px]'>
                 <Formik
-                validationSchema={validationSchema}
+                validationSchema={validationSchema.product}
                 enableReinitialize={true}
                 initialValues={{
                     name: "",
