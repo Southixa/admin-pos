@@ -66,7 +66,7 @@ const Sidebar = ({ children }) => {
                 </Link>
             </div>
         </div>
-        <div className='w-[260px] h-screen bg-green-200'>
+        <div className='w-[260px] min-w-[260px] h-screen bg-green-200'>
         </div>
         <div className='min-h-screen flex-grow bg-gray-200 px-[20px] pt-[20px]'>
             <div className='w-full max-w-screen-xl mx-auto'>
