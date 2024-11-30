@@ -1,8 +1,44 @@
 import React from 'react'
 import { FaChevronRight } from 'react-icons/fa6'
 import burger from "../../public/images/burger.jpg"
+import Swal from 'sweetalert2'
 
 const MenuDrawer = () => {
+
+    const handleCancel = () => {
+        Swal.fire({
+            title: "ທ່ານຕ້ອງການຍົກເລີກອໍເດີ້ນີ້ແມ່ນບໍ່?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#dd3333",
+            cancelButtonColor: "#c1c1c1",
+            confirmButtonText: "ຕົກລົງ",
+            cancelButtonText: "ຍົກເລີກ"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: "ຍົກເລີກສຳເລັດ!",
+                text: "ທ່ານໄດ້ຍົກເລີກອໍເລີກສຳເລັດ.",
+                icon: "success"
+              });
+            }
+          });
+    }
+
+    const handleConfirm = () => {
+        Swal.fire({
+            title: "ທ່ານຕ້ອງການຢືນຢັນການຊຳລະອໍເດີ້ນີ້ແມ່ນບໍ່?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#22c55e",
+            cancelButtonColor: "#c1c1c1",
+            confirmButtonText: "ຕົກລົງ",
+            cancelButtonText: "ຍົກເລີກ"
+          }).then((result) => {
+            
+          });
+    }
+
   return (
     <div className='w-[400px] h-screen fixed bg-white z-50 top-0 right-0 shadow-md p-[16px]'>
           <div className="w-full">
@@ -51,8 +87,8 @@ const MenuDrawer = () => {
             <p>ລາຄາລວມ</p>
             <p>250,000 ກີບ</p>
         </div>
-        <button className='w-full py-[10px] bg-red-500 text-white rounded-lg mt-[12px]'>ຍົກເລີກອໍເດີ</button>
-        <button className='w-full py-[10px] bg-green-500 text-white rounded-lg mt-[8px]'>ຊຳລະເງິນ</button>
+        <button onClick={()=>handleCancel()} className='w-full py-[10px] bg-red-500 text-white rounded-lg mt-[12px]'>ຍົກເລີກອໍເດີ</button>
+        <button onClick={()=>handleConfirm()} className='w-full py-[10px] bg-green-500 text-white rounded-lg mt-[8px]'>ຊຳລະເງິນ</button>
       </div>
   )
 }
