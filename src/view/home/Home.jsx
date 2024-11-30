@@ -83,6 +83,18 @@ const Home = () => {
           ))}
         </div>
       </div>
+
+        <div className="w-full bg-gray-400 mt-[20px] grid grid-cols-12 gap-10">
+            <div className="col-span-3 w-full min-h-[300px] bg-white rounded-2xl shadow-md p-[16px]">
+              <div className="w-full h-[160px] bg-gray-200 rounded-md">
+                <img src="" alt="product" />
+              </div>
+              <p className="text-[20px] mt-2">ຊຸດຂາໄກ່</p>
+              <p className="mt-1 text-green-600">50,000 ກີບ</p>
+              <button className="w-full bg-green-400 rounded-md py-2 mt-2">ເພີ່ມເມນູ</button>
+            </div>
+        </div>
+
     </Sidebar>
   );
 };
