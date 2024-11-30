@@ -3,6 +3,7 @@ import Sidebar from "../../components/Sidebar";
 import noodles from "../../../public/images/noodles.png";
 import { FaBorderAll } from "react-icons/fa";
 import burger from "../../../public/images/burger.jpg"
+import { FaChevronRight } from "react-icons/fa";
 
 const Home = () => {
   const categoryList = [
@@ -77,6 +78,17 @@ const Home = () => {
 
   return (
     <Sidebar>
+      <div className='w-[400px] h-screen fixed bg-white z-50 top-0 right-0 shadow-md p-[16px]'>
+          <div className="w-full">
+            <div className="cursor-pointer size-[40px] rounded-md bg-gray-200 flex justify-center items-center">
+              <FaChevronRight className="text-gray-600" />
+            </div>
+          </div>
+          <div className="w-full bg-gray-100 mt-[20px] rounded-lg flex border border-gray-200">
+            <button className="bg-green-300 border border-green-400 py-[8px] w-full rounded-lg">ກິນຢູ່ຮ້ານ</button>
+            <button className=" py-[8px] w-full rounded-lg">ກັບບ້ານ</button>
+          </div>
+      </div>
       <div className="w-[1200px] min-h-[80px] overflow-x-scroll">
         <div className="flex gap-2">
           <div className="min-w-[130px] bg-white rounded-2xl overflow-hidden shadow-sm">
