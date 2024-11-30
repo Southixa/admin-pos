@@ -35,8 +35,24 @@ const MenuDrawer = () => {
                   <p className="text-[14px] text-gray-600">50,000 ກີບ</p>
               </div>
             </div>
-
           </div>
+
+        <div className='w-full mt-[24px] min-h-[20px] flex gap-2'>
+            <button className='w-full py-[8px] flex justify-center items-center gap-3 bg-green-300 border border-green-500 rounded-lg'>
+                <div className='size-[10px] rounded-full border border-green-500 bg-white'></div>
+                <p>ຈ່າຍເງິນສົດ</p>
+            </button>
+            <button className='w-full py-[8px] flex justify-center items-center gap-3 bg-white border border-gray-200 rounded-lg'>
+                <div className='size-[10px] rounded-full border border-gray-300 bg-white'></div>
+                <p>ຈ່າຍເງິນສົດ</p>
+            </button>
+        </div>
+        <div className='w-full mt-[16px] rounded-lg bg-gray-200 px-[8px] py-[16px] flex justify-between'>
+            <p>ລາຄາລວມ</p>
+            <p>250,000 ກີບ</p>
+        </div>
+        <button className='w-full py-[10px] bg-red-500 text-white rounded-lg mt-[12px]'>ຍົກເລີກອໍເດີ</button>
+        <button className='w-full py-[10px] bg-green-500 text-white rounded-lg mt-[8px]'>ຊຳລະເງິນ</button>
       </div>
   )
 }
