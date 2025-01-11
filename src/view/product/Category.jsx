@@ -5,13 +5,16 @@ import { Link } from 'react-router-dom'
 import noodles from '../../../public/images/noodles.png'
 import { FaPlus } from "react-icons/fa";
 import { GetAllCategoriesApi } from '../../api/category'
+import Loading from '../../components/Loading'
 
 const Category = () => {
 
     const [categories, setCategories] = useState([])
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         const getData = async () => {
+            setLoading(true);
             const res = await GetAllCategoriesApi();
             if(!res) {
                 Swal.fire({
@@ -19,9 +22,11 @@ const Category = () => {
                     title: "ຜິດພາດ",
                     text: "ບໍ່ສາມາດດຶງຂໍ້ມູນໄດ້",
                   });
+                setLoading(false);
                 return;
             }
             setCategories(res);
+            setLoading(false);
         }
         getData();
     }, [])
@@ -41,9 +46,14 @@ const Category = () => {
                 </button>
             </div>
         </div>
+        {loading && (
+            <div className='flex justify-center items-center w-full h-[50px]'>
+                <Loading />
+            </div>
+        )}
         <div className='w-full mt-[16px] flex gap-4 flex-wrap'>
             {categories.map((item, index) => (
-                <div className='w-[130px] bg-white rounded-2xl overflow-hidden shadow-sm'>
+                <div key={index} className='w-[130px] bg-white rounded-2xl overflow-hidden shadow-sm'>
                     <div className='w-full h-[90px] pt-[20px] pl-[20px]'>
                         <div className='w-[60px] h-[60px]'>
                             <img src={item.icon} alt=""  className='w-ful h-full object-contain' />
