@@ -25,17 +25,21 @@ const AddCategory = () => {
                 enableReinitialize={true}
                 initialValues={{
                     name: "",
+                    icon: null,
                 }}
                 onSubmit={async (values) => {
                     console.log("values =>", values);
                 }}
                 >
-                    {({ errors, touched, isSubmitting })=>(
+                    {({ errors, touched, isSubmitting, setFieldValue })=>(
                         <Form>
                             <h3 className='text-center text-[20px] mt-[4px]'>ຮູບພາບ</h3>
                             <div className='w-full flex justify-center items-center mt-[16px]'>
-                                <UploadImage />
+                                <UploadImage onChange={(file) => {
+                                    setFieldValue("icon", file);
+                                }} />
                             </div>
+                            <ErrorMessage component={"div"} className='text-red-500' name="icon" />
                             <p className='mt-[16px] text-gray-600'>ຊື່ໝວດໝູ່</p>
                             <Field type='text' name="name" className='bg-gray-100 w-full rounded-[12px] border border-garay-200 px-[16px] py-[8px] placeholder:text-[14px] placeholder:text-gray-300' placeholder='ຊື່ເມນູ...' />
                             <ErrorMessage component={"div"} className='text-red-500' name="name" />

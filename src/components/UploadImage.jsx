@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { FaTimes } from "react-icons/fa";
 import { CiCamera } from 'react-icons/ci'
 
-const UploadImage = () => {
+const UploadImage = ({ onChange = () => {} }) => {
 
     const [file, setFile] = useState(null);
     const [preview, setPreview] = useState(null);
@@ -11,11 +11,13 @@ const UploadImage = () => {
         console.log("event =>", e);
         const selectedFile = e.target.files[0];
         setFile(selectedFile);
+        onChange(selectedFile);
     }
 
     function handleRemoveFile () {
         setFile(null);
         setPreview(null);
+        onChange(null);
     }
 
     useEffect(() => {
