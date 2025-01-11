@@ -4,8 +4,11 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { validationSchema } from '../../utils';
 import Swal from 'sweetalert2';
 import { LoginApi } from '../../api/auth';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+
+    const navigate = useNavigate();
 
     const handleLogin = async (value) => {
         const res = await LoginApi(value.username, value.password);
@@ -15,7 +18,9 @@ const Login = () => {
                 title: "ຜິດພາດ",
                 text: "ບໍ່ສາມາດເຂົ້າສູ່ລະບົບໄດ້",
               });
+            return;
         }
+        navigate("/")   
     }
   
     return (

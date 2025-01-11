@@ -93,7 +93,7 @@ const Home = () => {
               </div>
             </div>
           {categoryList.map((item, index) => (
-            <div className="min-w-[130px] bg-white rounded-2xl overflow-hidden shadow-sm">
+            <div key={index} className="min-w-[130px] bg-white rounded-2xl overflow-hidden shadow-sm">
               <div className="w-full h-[90px] pt-[20px] pl-[20px]">
                 <div className="w-[60px] h-[60px]">
                   <img

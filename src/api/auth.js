@@ -1,5 +1,6 @@
 import axios from "axios"
 import ApiPath from "./api.path"
+import { setUserInLocalStorage } from "../helpers"
 
 export const LoginApi = async (username, password) => {
     const config = {
@@ -10,6 +11,7 @@ export const LoginApi = async (username, password) => {
     const data = {username, password}
     try {
         const response = await axios.post(ApiPath.userLogin, data, config)
+        setUserInLocalStorage(response?.data)
         console.log("Res in LoginApi => ", response?.data);
         return response?.data
     } catch (error) {
