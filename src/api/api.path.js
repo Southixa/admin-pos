@@ -1,4 +1,4 @@
-const baseUrl = import.meta.env.VITE_BASE_URL_API2;
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 export default class ApiPath {
     // User
