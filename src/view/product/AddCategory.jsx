@@ -6,10 +6,31 @@ import UploadImage from '../../components/UploadImage';
 import { useNavigate } from 'react-router-dom';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { validationSchema } from '../../utils';
+import { AddCategoryApi } from '../../api/category';
+import Swal from 'sweetalert2';
+import Loading from '../../components/Loading';
 
 const AddCategory = () => {
 
     const navigate = useNavigate();
+
+    const handleAdd = async (value) => {
+        const res = await AddCategoryApi(value.name, value.icon);
+        if(!res) {
+            Swal.fire({
+                icon: "error",
+                title: "ຜິດພາດ",
+                text: "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້",
+              });
+            return;
+        }
+        Swal.fire({
+            icon: "success",
+            title: "ສຳເລັດ",
+            text: "ເພີ່ມຂໍ້ມູນສຳເລັດ",
+        });
+        navigate("/product/category")
+    }
 
   return (
     <Sidebar>
@@ -28,7 +49,7 @@ const AddCategory = () => {
                     icon: null,
                 }}
                 onSubmit={async (values) => {
-                    console.log("values =>", values);
+                    await handleAdd(values);
                 }}
                 >
                     {({ errors, touched, isSubmitting, setFieldValue })=>(
@@ -49,7 +70,10 @@ const AddCategory = () => {
                                     <button className='text-green-500 border border-green-500 py-[10px] w-full rounded-[12px]'>ຍົກເລີກ</button>
                                 </div>
                                 <div className='w-full'>
-                                    <button type="submit" className='text-white bg-green-500 py-[10px] w-full rounded-[12px]'>ບັນທຶກ</button>
+                                    <button type="submit" className='text-white bg-green-500 py-[10px] w-full rounded-[12px] flex justify-center gap-4 items-center'>
+                                        {isSubmitting && <Loading />}
+                                        ບັນທຶກ
+                                        </button>
                                 </div>
                             </div>
                         </Form>
