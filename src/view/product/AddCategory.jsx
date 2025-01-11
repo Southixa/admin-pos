@@ -62,18 +62,18 @@ const AddCategory = () => {
                             </div>
                             <ErrorMessage component={"div"} className='text-red-500' name="icon" />
                             <p className='mt-[16px] text-gray-600'>ຊື່ໝວດໝູ່</p>
-                            <Field type='text' name="name" className='bg-gray-100 w-full rounded-[12px] border border-garay-200 px-[16px] py-[8px] placeholder:text-[14px] placeholder:text-gray-300' placeholder='ຊື່ເມນູ...' />
+                            <Field disabled={isSubmitting} type='text' name="name" className='bg-gray-100 w-full rounded-[12px] border border-garay-200 px-[16px] py-[8px] placeholder:text-[14px] placeholder:text-gray-300' placeholder='ຊື່ເມນູ...' />
                             <ErrorMessage component={"div"} className='text-red-500' name="name" />
 
                             <div className='w-full  mt-[70px] flex justify-between gap-4'>
                                 <div className='w-full'>
-                                    <button className='text-green-500 border border-green-500 py-[10px] w-full rounded-[12px]'>ຍົກເລີກ</button>
+                                    <button disabled={isSubmitting} className='text-green-500 border border-green-500 py-[10px] w-full rounded-[12px] disabled:opacity-80'>ຍົກເລີກ</button>
                                 </div>
                                 <div className='w-full'>
-                                    <button type="submit" className='text-white bg-green-500 py-[10px] w-full rounded-[12px] flex justify-center gap-4 items-center'>
+                                    <button disabled={isSubmitting} type="submit" className='text-white bg-green-500 py-[10px] w-full rounded-[12px] flex justify-center gap-4 items-center disabled:opacity-80'>
                                         {isSubmitting && <Loading />}
                                         ບັນທຶກ
-                                        </button>
+                                    </button>
                                 </div>
                             </div>
                         </Form>

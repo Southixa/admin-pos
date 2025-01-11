@@ -15,3 +15,14 @@ export const AddCategoryApi = async (name, icon) => {
         return undefined;
     }
 }
+
+export const GetAllCategoriesApi = async () => {
+    try {
+        const response = await axios.get(ApiPath.getAllCategories, getHeaderConfig())
+        console.log("Res in GetAllCategoriesApi => ", response?.data?.data);
+        return response?.data?.data;
+    } catch (error) {
+        console.log("Error Occurred In GetAllCategoriesApi => ", error);
+        return undefined;
+    }
+}
