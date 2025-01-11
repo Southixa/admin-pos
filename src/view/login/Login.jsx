@@ -2,8 +2,21 @@ import React, { useEffect, useState } from 'react'
 import Logo from '../../../public/images/logo.png'
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { validationSchema } from '../../utils';
+import Swal from 'sweetalert2';
+import { LoginApi } from '../../api/auth';
 
 const Login = () => {
+
+    const handleLogin = async (value) => {
+        const res = await LoginApi(value.username, value.password);
+        if(!res) {
+            Swal.fire({
+                icon: "error",
+                title: "ຜິດພາດ",
+                text: "ບໍ່ສາມາດເຂົ້າສູ່ລະບົບໄດ້",
+              });
+        }
+    }
   
     return (
         <div className='w-full h-screen flex justify-center items-center'>
@@ -27,7 +40,7 @@ const Login = () => {
                         password: "",
                     }}
                     onSubmit={async (values) => {
-                        console.log("values =>", values);
+                        await handleLogin(values);
                     }}
                     >
                         {({ errors, touched, isSubmitting })=>(

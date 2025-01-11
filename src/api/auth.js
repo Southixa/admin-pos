@@ -4,8 +4,8 @@ import ApiPath from "./api.path"
 export const LoginApi = async (username, password) => {
     const config = {
         headers: {
-            "Content-Type:": "application/json"
-        }
+            "Content-Type": "application/json",
+        },
     }
     const data = {username, password}
     try {
