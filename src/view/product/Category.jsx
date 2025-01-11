@@ -1,26 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Sidebar from '../../components/Sidebar'
 import Searchbar from '../../components/Searchbar'
 import { Link } from 'react-router-dom'
 import noodles from '../../../public/images/noodles.png'
 import { FaPlus } from "react-icons/fa";
+import { GetAllCategoriesApi } from '../../api/category'
 
 const Category = () => {
 
-    const categoryList = [
-        {
-            icon: noodles,
-            name: "ທອດ"
-        },
-        {
-            icon: noodles,
-            name: "ທອດ"
-        },
-        {
-            icon: noodles,
-            name: "ທອດ"
-        },
-    ]
+    const [categories, setCategories] = useState([])
+
+    useEffect(() => {
+        const getData = async () => {
+            const res = await GetAllCategoriesApi();
+            if(!res) {
+                Swal.fire({
+                    icon: "error",
+                    title: "ຜິດພາດ",
+                    text: "ບໍ່ສາມາດດຶງຂໍ້ມູນໄດ້",
+                  });
+                return;
+            }
+            setCategories(res);
+        }
+        getData();
+    }, [])
 
   return (
     <Sidebar>
@@ -38,7 +42,7 @@ const Category = () => {
             </div>
         </div>
         <div className='w-full mt-[16px] flex gap-4 flex-wrap'>
-            {categoryList.map((item, index) => (
+            {categories.map((item, index) => (
                 <div className='w-[130px] bg-white rounded-2xl overflow-hidden shadow-sm'>
                     <div className='w-full h-[90px] pt-[20px] pl-[20px]'>
                         <div className='w-[60px] h-[60px]'>
