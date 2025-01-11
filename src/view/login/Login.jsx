@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Logo from '../../../public/images/logo.png'
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { validationSchema } from '../../utils';
 
 const Login = () => {
   
@@ -17,16 +19,34 @@ const Login = () => {
                 </div>
 
                 <div className='w-full bg-white border border-gray-200 rounded-md mt-[20px] p-[14px]'>
-                    <h2 className='text-center text-[24px] font-bold mt-[8px]'>ລ໋ອກອິນ</h2>
-                    <p className='mt-[32px]'>ຊື່ຜູ້ໃຊ້</p>
-                    <input className='w-full border border-gray-200 rounded-[6px] py-[8px] px-[8px] focus:outline-none' type='text' />
-                    <p className='mt-[20px]'>ລະຫັດຜ່ານ</p>
-                    <input className='w-full border border-gray-200 rounded-[6px] py-[8px] px-[8px] focus:outline-none' type='password' />
-                    <div className='w-full flex items-center mt-[8px] gap-2'>
-                        <input className='w-[16px] h-[16px]' type="checkbox" id="remember" name="remember" />
-                        <label for="remember">ຈື່ຂ້ອຍ</label>
-                    </div>
-                    <button className='w-full bg-green-500 py-[8px] rounded-md text-white mt-[20px]'>ລ໋ອກອິນ</button>
+                    <Formik
+                    validationSchema={validationSchema.login}
+                    enableReinitialize={true}
+                    initialValues={{
+                        username: "",
+                        password: "",
+                    }}
+                    onSubmit={async (values) => {
+                        console.log("values =>", values);
+                    }}
+                    >
+                        {({ errors, touched, isSubmitting })=>(
+                            <Form>
+                                <h2 className='text-center text-[24px] font-bold mt-[8px]'>ລ໋ອກອິນ</h2>
+                                <p className='mt-[32px]'>ຊື່ຜູ້ໃຊ້</p>
+                                <Field type='text' name="username" className='w-full border border-gray-200 rounded-[6px] py-[8px] px-[8px] focus:outline-none'/>
+                                <ErrorMessage component={"div"} className='text-red-500' name="username" />
+                                <p className='mt-[20px]'>ລະຫັດຜ່ານ</p>
+                                <Field name="password" className='w-full border border-gray-200 rounded-[6px] py-[8px] px-[8px] focus:outline-none' type='password' />
+                                <ErrorMessage component={"div"} className='text-red-500' name="password" />
+                                <div className='w-full flex items-center mt-[8px] gap-2'>
+                                    <input className='w-[16px] h-[16px]' type="checkbox" id="remember" name="remember" />
+                                    <label for="remember">ຈື່ຂ້ອຍ</label>
+                                </div>
+                                <button type="submit" className='w-full bg-green-500 py-[8px] rounded-md text-white mt-[20px]'>ລ໋ອກອິນ</button>
+                            </Form>
+                        )}
+                    </Formik>
                 </div>
 
 

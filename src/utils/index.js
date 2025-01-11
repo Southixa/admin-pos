@@ -9,4 +9,8 @@ export const validationSchema = {
     category: Yup.object().shape({
         name: Yup.string().required("ກະລຸນາໃສ່ຂໍ້ມູນ"),
     }),
+    login: Yup.object().shape({
+        username: Yup.string().required("ກະລຸນາໃສ່ຂໍ້ມູນ"),
+        password: Yup.string().required("ກະລຸນາໃສ່ຂໍ້ມູນ"),
+    })
 }
