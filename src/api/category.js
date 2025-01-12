@@ -55,8 +55,8 @@ export const UpdateCategoryApi = async (id, name, icon) => {
         formData.append('name', name);
         formData.append('icon', icon, "icon");
         const response = await axios.put(`${ApiPath.updateCategory}/${id}`, formData, getHeaderConfig("multipart/form-data"))
-        console.log("Res in UpdateCategoryApi => ", response?.data);
-        return response?.data
+        console.log("Res in UpdateCategoryApi => ", response?.data?.data);
+        return response?.data?.data;
     } catch (error) {
         console.log("Error Occurred In UpdateCategoryApi => ", error);
         return undefined;
