@@ -8,6 +8,8 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { validationSchema } from '../../utils';
 import { GetAllCategoriesApi } from '../../api/category';
 import Swal from 'sweetalert2';
+import { AddProductApi } from '../../api/product';
+import Loading from '../../components/Loading';
 
 const AddProduct = () => {
 
@@ -36,6 +38,24 @@ const AddProduct = () => {
         getData();
     }, [])
 
+    const handleAdd = async (value) => {
+        const res = await AddProductApi(value.name, value.price, value.category, value.image);
+        if(!res) {
+            Swal.fire({
+                icon: "error",
+                title: "ຜິດພາດ",
+                text: "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້",
+              });
+            return;
+        }
+        Swal.fire({
+            icon: "success",
+            title: "ສຳເລັດ",
+            text: "ເພີ່ມຂໍ້ມູນສຳເລັດ",
+        });
+        navigate("/product")
+    }
+
   return (
     <Sidebar>
         <div className='w-full'>
@@ -51,14 +71,14 @@ const AddProduct = () => {
                 initialValues={{
                     name: "",
                     price: "",
-                    category: "",
+                    category: categories?.[0]?.categoryID || "",
                     image: null
                 }}
                 onSubmit={async (values) => {
-                    console.log("values =>", values);
+                    await handleAdd(values)
                 }}
                 >
-                    {({ errors, touched, isSubmitting })=>(
+                    {({ errors, touched, isSubmitting, setFieldValue })=>(
                         <Form>
                             <h3 className='text-center text-[20px] mt-[4px]'>ຮູບພາບ</h3>
                             <div className='w-full flex justify-center items-center mt-[16px]'>
@@ -68,13 +88,13 @@ const AddProduct = () => {
                             </div>
                             <ErrorMessage component={"div"} className='text-red-500' name="image" />
                             <p className='mt-[16px] text-gray-600'>ຊື່ເມນູ</p>
-                            <Field type='text' name="name" className='bg-gray-100 w-full rounded-[12px] border border-garay-200 px-[16px] py-[8px] placeholder:text-[14px] placeholder:text-gray-300' placeholder='ຊື່ເມນູ...' />
+                            <Field disabled={isSubmitting} type='text' name="name" className='bg-gray-100 w-full rounded-[12px] border border-garay-200 px-[16px] py-[8px] placeholder:text-[14px] placeholder:text-gray-300' placeholder='ຊື່ເມນູ...' />
                             <ErrorMessage component={"div"} className='text-red-500' name="name" />
                             <p className='mt-[16px] text-gray-600'>ລາຄາ</p>
-                            <Field type='number' name="price" className='bg-gray-100 w-full rounded-[12px] border border-garay-200 px-[16px] py-[8px] placeholder:text-[14px] placeholder:text-gray-300' placeholder='ໃສ່ລາຄາ...' />
+                            <Field disabled={isSubmitting} type='number' name="price" className='bg-gray-100 w-full rounded-[12px] border border-garay-200 px-[16px] py-[8px] placeholder:text-[14px] placeholder:text-gray-300' placeholder='ໃສ່ລາຄາ...' />
                             <ErrorMessage component={"div"} className='text-red-500' name="price" />
                             <p className='mt-[16px] text-gray-600'>ໝວດໝູ່</p>
-                            <Field as="select" name="category" className='w-full bg-green-500 text-white rounded-[12px] px-[16px] py-[8px] text-center'>
+                            <Field disabled={isSubmitting} as="select" name="category" className='w-full bg-green-500 text-white rounded-[12px] px-[16px] py-[8px] text-center'>
                                 {categories.map((item, index) => (
                                     <option key={index} value={item.categoryID}>{item.name}</option>
                                 ))}
@@ -82,10 +102,13 @@ const AddProduct = () => {
                             <ErrorMessage component={"div"} className='text-red-500' name="category" />
                             <div className='w-full  mt-[70px] flex justify-between gap-4'>
                                 <div className='w-full'>
-                                    <button className='text-green-500 border border-green-500 py-[10px] w-full rounded-[12px]'>ຍົກເລີກ</button>
+                                    <button disabled={isSubmitting} className='text-green-500 border border-green-500 py-[10px] w-full rounded-[12px] disabled:opacity-80'>ຍົກເລີກ</button>
                                 </div>
                                 <div className='w-full'>
-                                    <button type="submit" className='text-white bg-green-500 py-[10px] w-full rounded-[12px]'>ບັນທຶກ</button>
+                                    <button disabled={isSubmitting} type="submit" className='text-white bg-green-500 py-[10px] w-full rounded-[12px] flex justify-center gap-4 items-center disabled:opacity-80'>
+                                        {isSubmitting && <Loading />}
+                                        ບັນທຶກ
+                                    </button>
                                 </div>
                             </div>
                         </Form>

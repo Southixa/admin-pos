@@ -4,7 +4,7 @@ import ApiPath from "./api.path";
 
 export const AddProductApi = async (name, price, categoryId, image) => {
     const formData = new FormData();
-    formData.append('name', name);
+    formData.append('menuName', name);
     formData.append('price', price);
     formData.append('categoryID', categoryId);
     formData.append('image', image, "image");
