@@ -69,3 +69,14 @@ export function getHeaderConfig (type = "application/json") {
   return {};
 
 }
+
+export const formatCurrency = (number) => {
+  if(!number) return 0;
+  if(typeof +number !== 'number') return 0;
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'decimal',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  });
+  return formatter.format(number);
+}
