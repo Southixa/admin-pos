@@ -4,7 +4,7 @@ import Searchbar from '../../components/Searchbar'
 import { Link } from 'react-router-dom'
 import noodles from '../../../public/images/noodles.png'
 import { FaPlus } from "react-icons/fa";
-import { GetAllCategoriesApi } from '../../api/category'
+import { DeleteCategoryApi, GetAllCategoriesApi } from '../../api/category'
 import Loading from '../../components/Loading'
 import { FaTrash } from "react-icons/fa";
 import { FaPen } from "react-icons/fa";
@@ -25,13 +25,22 @@ const Category = () => {
             cancelButtonColor: "#d33",
             confirmButtonText: "ລົບ",
             cancelButtonText: "ຍົກເລີກ"
-          }).then((result) => {
+          }).then( async (result) => {
             if (result.isConfirmed) {
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-              });
+                const res = await DeleteCategoryApi(id);
+                if(!res) {
+                    Swal.fire({
+                    title: "ຜົດພາດ",
+                    text: "ບໍສາມາດລົບຂໍ້ມູນໄດ້",
+                    icon: "error"
+                    });
+                return;
+                }
+                Swal.fire({
+                    title: "ສຳເລັດ",
+                    text: "ລົບຂໍ້ມູນສຳເລັດ",
+                    icon: "success"
+                    });
             }
           });
     }
@@ -86,7 +95,7 @@ const Category = () => {
                             <button className='p-[3px] bg-gray-200 rounded-sm'>
                                 <FaPen className='text-gray-500 text-[14px]' />
                             </button>
-                            <button onClick={() => handleDelete(item.id)} className='p-[3px] bg-gray-200 rounded-sm'>
+                            <button onClick={() => handleDelete(item.categoryID)} className='p-[3px] bg-gray-200 rounded-sm'>
                                 <FaTrash className='text-red-500 text-[14px]' />
                             </button>
                         </div>

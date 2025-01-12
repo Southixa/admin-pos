@@ -29,9 +29,9 @@ export const GetAllCategoriesApi = async () => {
 
 export const DeleteCategoryApi = async (id) => {
     try {
-        const response = await axios.delete(`${ApiPath.deleteCategory}/${id}`, getHeaderConfig())
-        console.log("Res in GetAllCategoriesApi => ", response?.data?.data);
-        return response?.data?.data;
+        const response = await axios.delete(`${ApiPath.deleteCategory}${id}`, getHeaderConfig())
+        console.log("Res in GetAllCategoriesApi => ", response);
+        return response;
     } catch (error) {
         console.log("Error Occurred In DeleteCategoryApi => ", error);
         return undefined;
@@ -40,7 +40,7 @@ export const DeleteCategoryApi = async (id) => {
 
 export const GetOneCategoryApi = async (id) => {
     try {
-        const response = await axios.get(`${ApiPath.getOneCategory}/${id}`, getHeaderConfig())
+        const response = await axios.get(`${ApiPath.getOneCategory}${id}`, getHeaderConfig())
         console.log("Res in GetOneCategoryApi => ", response?.data?.data);
         return response?.data?.data;
     } catch (error) {
@@ -54,7 +54,7 @@ export const UpdateCategoryApi = async (id, name, icon) => {
         const formData = new FormData();
         formData.append('name', name);
         formData.append('icon', icon, "icon");
-        const response = await axios.put(`${ApiPath.updateCategory}/${id}`, formData, getHeaderConfig("multipart/form-data"))
+        const response = await axios.put(`${ApiPath.updateCategory}${id}`, formData, getHeaderConfig("multipart/form-data"))
         console.log("Res in UpdateCategoryApi => ", response?.data?.data);
         return response?.data?.data;
     } catch (error) {
