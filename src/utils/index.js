@@ -5,6 +5,16 @@ export const validationSchema = {
         name: Yup.string().required("ກະລຸນາໃສ່ຂໍ້ມູນ"),
         price: Yup.number().typeError("ເປັນຕົວເລກເທົ່ານັ້ນ").required("ກະລຸນາໃສ່ຂໍ້ມູນ"),
         category: Yup.string().required("ກະລຸນາໃສ່ຂໍ້ມູນ"),
+        image: Yup.mixed()
+        .required('ກະລຸນາອັບໂຫຼດຮູບພາບ')
+        .test('fileSize', 'File is too large', (value) => {
+        if (!value) return true; // Let required handle empty files
+        return value.size <= 5000000; // 5MB limit
+        })
+        .test('fileType', 'Unsupported file format', (value) => {
+        if (!value) return true;
+        return ['image/jpeg', 'image/png'].includes(value.type);
+        })
     }),
     category: Yup.object().shape({
         name: Yup.string().required("ກະລຸນາໃສ່ຂໍ້ມູນ"),
