@@ -8,6 +8,7 @@ import Staff from '../view/staff/Staff'
 import AddProduct from '../view/product/AddProduct'
 import Category from '../view/product/Category'
 import AddCategory from '../view/product/AddCategory'
+import EditCategory from '../view/product/EditCategory'
 
 const RouterPath = () => {
     const router = createBrowserRouter([
@@ -34,6 +35,10 @@ const RouterPath = () => {
         {
             path: "/product/category/add",
             element: <AddCategory/>
+        },
+        {
+            path: "/product/category/:id",
+            element: <EditCategory />
         },
         {
             path: "/history",

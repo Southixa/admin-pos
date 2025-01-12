@@ -15,6 +15,22 @@ const Category = () => {
     const [categories, setCategories] = useState([])
     const [loading, setLoading] = useState(false)
 
+    const getData = async () => {
+        setLoading(true);
+        const res = await GetAllCategoriesApi();
+        if(!res) {
+            Swal.fire({
+                icon: "error",
+                title: "ຜິດພາດ",
+                text: "ບໍ່ສາມາດດຶງຂໍ້ມູນໄດ້",
+              });
+            setLoading(false);
+            return;
+        }
+        setCategories(res);
+        setLoading(false);
+    }
+
     const handleDelete = async (id) => {
         Swal.fire({
             title: "ຢືນຢັນການລົບ",
@@ -41,26 +57,12 @@ const Category = () => {
                     text: "ລົບຂໍ້ມູນສຳເລັດ",
                     icon: "success"
                     });
+                await getData();
             }
           });
     }
 
     useEffect(() => {
-        const getData = async () => {
-            setLoading(true);
-            const res = await GetAllCategoriesApi();
-            if(!res) {
-                Swal.fire({
-                    icon: "error",
-                    title: "ຜິດພາດ",
-                    text: "ບໍ່ສາມາດດຶງຂໍ້ມູນໄດ້",
-                  });
-                setLoading(false);
-                return;
-            }
-            setCategories(res);
-            setLoading(false);
-        }
         getData();
     }, [])
 
@@ -92,9 +94,9 @@ const Category = () => {
                             <img src={item.icon} alt=""  className='w-ful h-full object-contain' />
                         </div>
                         <div className='absolute top-[8px] right-[8px] flex gap-2'>
-                            <button className='p-[3px] bg-gray-200 rounded-sm'>
+                            <Link to={`/product/category/${item.categoryID}`} className='p-[3px] bg-gray-200 rounded-sm'>
                                 <FaPen className='text-gray-500 text-[14px]' />
-                            </button>
+                            </Link>
                             <button onClick={() => handleDelete(item.categoryID)} className='p-[3px] bg-gray-200 rounded-sm'>
                                 <FaTrash className='text-red-500 text-[14px]' />
                             </button>
