@@ -6,11 +6,35 @@ import noodles from '../../../public/images/noodles.png'
 import { FaPlus } from "react-icons/fa";
 import { GetAllCategoriesApi } from '../../api/category'
 import Loading from '../../components/Loading'
+import { FaTrash } from "react-icons/fa";
+import { FaPen } from "react-icons/fa";
+import Swal from 'sweetalert2'
 
 const Category = () => {
 
     const [categories, setCategories] = useState([])
     const [loading, setLoading] = useState(false)
+
+    const handleDelete = async (id) => {
+        Swal.fire({
+            title: "ຢືນຢັນການລົບ",
+            text: "ທ່ານຕ້ອງການລົບແທ້ ຫຼືື ບໍ່?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "ລົບ",
+            cancelButtonText: "ຍົກເລີກ"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              });
+            }
+          });
+    }
 
     useEffect(() => {
         const getData = async () => {
@@ -54,9 +78,17 @@ const Category = () => {
         <div className='w-full mt-[16px] flex gap-4 flex-wrap'>
             {categories.map((item, index) => (
                 <div key={index} className='w-[130px] bg-white rounded-2xl overflow-hidden shadow-sm'>
-                    <div className='w-full h-[90px] pt-[20px] pl-[20px]'>
+                    <div className='w-full h-[90px] pt-[20px] pl-[20px] relative'>
                         <div className='w-[60px] h-[60px]'>
                             <img src={item.icon} alt=""  className='w-ful h-full object-contain' />
+                        </div>
+                        <div className='absolute top-[8px] right-[8px] flex gap-2'>
+                            <button className='p-[3px] bg-gray-200 rounded-sm'>
+                                <FaPen className='text-gray-500 text-[14px]' />
+                            </button>
+                            <button onClick={() => handleDelete(item.id)} className='p-[3px] bg-gray-200 rounded-sm'>
+                                <FaTrash className='text-red-500 text-[14px]' />
+                            </button>
                         </div>
                     </div>
                     <div className='w-full h-[60px]  p-2'>
