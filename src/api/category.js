@@ -49,10 +49,11 @@ export const GetOneCategoryApi = async (id) => {
     }
 }
 
-export const UpdateCategoryApi = async (id, name, icon) => {
+export const UpdateCategoryApi = async (id, name, icon, oldImage) => {
     try {
         const formData = new FormData();
         formData.append('name', name);
+        formData.append('oldImage', oldImage);
         formData.append('icon', icon, "icon");
         const response = await axios.put(`${ApiPath.updateCategory}${id}`, formData, getHeaderConfig("multipart/form-data"))
         console.log("Res in UpdateCategoryApi => ", response?.data?.data);

@@ -6,7 +6,7 @@ import UploadImage from '../../components/UploadImage';
 import { useNavigate } from 'react-router-dom';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { validationSchema } from '../../utils';
-import { AddCategoryApi, GetOneCategoryApi } from '../../api/category';
+import { AddCategoryApi, GetOneCategoryApi, UpdateCategoryApi } from '../../api/category';
 import Swal from 'sweetalert2';
 import Loading from '../../components/Loading';
 import { useParams } from "react-router"
@@ -34,20 +34,20 @@ const EditCategory = () => {
         getData();
     }, [])
 
-    const handleAdd = async (value) => {
-        const res = await AddCategoryApi(value.name, value.icon);
+    const handleUpdate = async (value) => {
+        const res = await UpdateCategoryApi(id, value.name, value.icon, category?.icon);
         if(!res) {
             Swal.fire({
                 icon: "error",
                 title: "ຜິດພາດ",
-                text: "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້",
+                text: "ບໍ່ສາມາດອັບເດດຂໍ້ມູນໄດ້",
               });
             return;
         }
         Swal.fire({
             icon: "success",
             title: "ສຳເລັດ",
-            text: "ເພີ່ມຂໍ້ມູນສຳເລັດ",
+            text: "ອັບເດດຂໍ້ມູນສຳເລັດ",
         });
         navigate("/product/category")
     }
@@ -65,11 +65,11 @@ const EditCategory = () => {
                 validationSchema={validationSchema.category}
                 enableReinitialize={true}
                 initialValues={{
-                    name: "",
+                    name: category?.name || "",
                     icon: null,
                 }}
                 onSubmit={async (values) => {
-                    await handleAdd(values);
+                    await handleUpdate(values);
                 }}
                 >
                     {({ errors, touched, isSubmitting, setFieldValue })=>(
