@@ -9,6 +9,9 @@ const MenuDrawer = () => {
 
   const { isOpen, onOpen, onClose, cart, addToCart, removeFromCart, clearCart } = useMenuDrawerStore();
 
+  const uniqueCart = [...new Set(cart.map(item => item.menuID))]
+    .map(id => cart.find(item => item.menuID === id));
+
     const handleCancel = () => {
         Swal.fire({
             title: "ທ່ານຕ້ອງການຍົກເລີກອໍເດີ້ນີ້ແມ່ນບໍ່?",
