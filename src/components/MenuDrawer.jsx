@@ -3,10 +3,11 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6'
 import burger from "../assets/images/burger.jpg"
 import Swal from 'sweetalert2'
 import { useMenuDrawerStore } from '../store'
+import { formatCurrency } from '../helpers'
 
 const MenuDrawer = () => {
 
-  const { isOpen, onOpen, onClose } = useMenuDrawerStore();
+  const { isOpen, onOpen, onClose, cart, addToCart, removeFromCart, clearCart } = useMenuDrawerStore();
 
     const handleCancel = () => {
         Swal.fire({
@@ -68,26 +69,28 @@ const MenuDrawer = () => {
             <button className=" py-[8px] w-full rounded-lg">ກັບບ້ານ</button>
           </div>
           <div className="w-full h-[300px]  mt-[40px] overflow-y-scroll">
-            <div className='w-full bg-white flex justify-between gap-2 p-[8px] border border-gray-200 rounded-md'>
-              <div className="size-[80px] bg-gray-800 rounded-md overflow-hidden">
-                <img src={burger} alt='product' className="w-full h-full object-cover" />
-              </div>
-              <div className="flex-grow">
-                <p>ຊຸດຂາໄກ່</p>
-                <p className="text-gray-500 text-[12px] mt-[14px] ml-[6px]">ຈຳນວນ</p>
-                <div className="w-[100px] flex">
-                    <button className="bg-red-500 rounded-full size-[24px] text-white">-</button>
-                    <div className="min-w-[40px] flex justify-center items-center">
-                      1
-                    </div>
-                    <button className="bg-green-500 rounded-full size-[24px] text-white">+</button>
+            {cart.map((item, index) => (
+              <div key={index} className='w-full bg-white flex justify-between gap-2 p-[8px] border border-gray-200 rounded-md'>
+                <div className="size-[80px] bg-gray-800 rounded-md overflow-hidden">
+                  <img src={item.image} alt='product' className="w-full h-full object-cover" />
+                </div>
+                <div className="flex-grow">
+                  <p>{item.name}</p>
+                  <p className="text-gray-500 text-[12px] mt-[14px] ml-[6px]">ຈຳນວນ</p>
+                  <div className="w-[100px] flex">
+                      <button className="bg-red-500 rounded-full size-[24px] text-white">-</button>
+                      <div className="min-w-[40px] flex justify-center items-center">
+                        1
+                      </div>
+                      <button className="bg-green-500 rounded-full size-[24px] text-white">+</button>
+                  </div>
+                </div>
+                <div className="min-w-[100px] flex flex-col justify-between items-end">
+                    <p className="text-[14px] text-gray-600">{formatCurrency(item.price)} ກີບ</p>
+                    <p className="text-[14px] text-gray-600">50,000 ກີບ</p>
                 </div>
               </div>
-              <div className="min-w-[100px] flex flex-col justify-between items-end">
-                  <p className="text-[14px] text-gray-600">50,000 ກີບ</p>
-                  <p className="text-[14px] text-gray-600">50,000 ກີບ</p>
-              </div>
-            </div>
+            ))}
           </div>
 
         <div className='w-full mt-[24px] min-h-[20px] flex gap-2'>

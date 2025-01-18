@@ -9,8 +9,11 @@ import { GetAllCategoriesApi } from "../../api/category";
 import Swal from "sweetalert2";
 import { GetAllProductsApi } from "../../api/product";
 import { formatCurrency } from "../../helpers";
+import { useMenuDrawerStore } from "../../store";
 
 const Home = () => {
+
+  const { addToCart } = useMenuDrawerStore();
 
   const [categories, setCategories] = useState([])
   const [loading, setLoading] = useState(false)
@@ -90,7 +93,7 @@ const Home = () => {
               </div>
               <p className="text-[20px] mt-2">{item.name}</p>
               <p className="mt-1 text-green-600">{formatCurrency(item.price)} ກີບ</p>
-              <button className="w-full bg-green-400 rounded-md py-2 mt-2">ເພີ່ມເມນູ</button>
+              <button onClick={() => addToCart(item)} className="w-full bg-green-400 rounded-md py-2 mt-2">ເພີ່ມເມນູ</button>
             </div>
           ))}
         </div>
