@@ -1,58 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar";
 import noodles from "../../assets/images/noodles.png";
 import { FaBorderAll } from "react-icons/fa";
 import burger from "../../assets/images/burger.jpg"
 import { FaChevronRight } from "react-icons/fa";
 import MenuDrawer from "../../components/MenuDrawer";
+import { GetAllCategoriesApi } from "../../api/category";
+import Swal from "sweetalert2";
+import { GetAllProductsApi } from "../../api/product";
 
 const Home = () => {
-  const categoryList = [
-    {
-      icon: noodles,
-      name: "ທອດ",
-    },
-    {
-      icon: noodles,
-      name: "ທອດ",
-    },
-    {
-      icon: noodles,
-      name: "ທອດ",
-    },
-    {
-      icon: noodles,
-      name: "ທອດ",
-    },
-    {
-      icon: noodles,
-      name: "ທອດ",
-    },
-    {
-      icon: noodles,
-      name: "ທອດ",
-    },
-    {
-      icon: noodles,
-      name: "ທອດ",
-    },
-    {
-      icon: noodles,
-      name: "ທອດ",
-    },
-    {
-      icon: noodles,
-      name: "ທອດ",
-    },
-    {
-      icon: noodles,
-      name: "ທອດ",
-    },
-    {
-      icon: noodles,
-      name: "ທອດ",
-    },
-  ];
+
+  const [categories, setCategories] = useState([])
+  const [loading, setLoading] = useState(false)
+
+  const [products, setProducts] = useState([])
+
+  const getData = async () => {
+      setLoading(true);
+      const [resCategory, resProduct] = await Promise.all([
+        GetAllCategoriesApi(),
+        GetAllProductsApi()
+      ]);
+      if(!resCategory || !resProduct) {
+          Swal.fire({
+              icon: "error",
+              title: "ຜິດພາດ",
+              text: "ບໍ່ສາມາດດຶງຂໍ້ມູນໄດ້",
+            });
+          setLoading(false);
+          return;
+      }
+      setCategories(resCategory);
+      setProducts(resProduct);
+      setLoading(false);
+  }
+
+  useEffect(() => {
+      getData();
+  }, [])
+
 
   const productList = [
     {
@@ -92,13 +79,13 @@ const Home = () => {
                 <p className="">ທັງໝົດ</p>
               </div>
             </div>
-          {categoryList.map((item, index) => (
+          {categories.map((item, index) => (
             <div key={index} className="min-w-[130px] bg-white rounded-2xl overflow-hidden shadow-sm">
               <div className="w-full h-[90px] pt-[20px] pl-[20px]">
                 <div className="w-[60px] h-[60px]">
                   <img
                     src={item.icon}
-                    alt=""
+                    alt={item.name}
                     className="w-ful h-full object-contain"
                   />
                 </div>

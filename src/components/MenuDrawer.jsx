@@ -1,9 +1,12 @@
 import React from 'react'
-import { FaChevronRight } from 'react-icons/fa6'
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6'
 import burger from "../assets/images/burger.jpg"
 import Swal from 'sweetalert2'
+import { useMenuDrawerStore } from '../store'
 
 const MenuDrawer = () => {
+
+  const { isOpen, onOpen, onClose } = useMenuDrawerStore();
 
     const handleCancel = () => {
         Swal.fire({
@@ -39,10 +42,24 @@ const MenuDrawer = () => {
           });
     }
 
+    if(!isOpen){
+      return (
+        <div className='w-fit h-screen fixed bg-white z-50 top-0 right-0 shadow-md p-[16px]'>
+              <div className="w-full">
+                <div onClick={onOpen} className="cursor-pointer size-[40px] rounded-md bg-gray-200 flex justify-center items-center">
+                  <FaChevronLeft className="text-gray-600" />
+                </div>
+              </div>
+          </div>
+      )
+    }
+
+
+
   return (
     <div className='w-[400px] h-screen fixed bg-white z-50 top-0 right-0 shadow-md p-[16px]'>
           <div className="w-full">
-            <div className="cursor-pointer size-[40px] rounded-md bg-gray-200 flex justify-center items-center">
+            <div onClick={onClose} className="cursor-pointer size-[40px] rounded-md bg-gray-200 flex justify-center items-center">
               <FaChevronRight className="text-gray-600" />
             </div>
           </div>
