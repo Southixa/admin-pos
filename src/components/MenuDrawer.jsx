@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaChevronRight } from 'react-icons/fa6'
-import burger from "../../public/images/burger.jpg"
+import burger from "../assets/images/burger.jpg"
 import Swal from 'sweetalert2'
 
 const MenuDrawer = () => {

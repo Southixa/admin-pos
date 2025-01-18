@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Sidebar from '../../components/Sidebar'
 import Searchbar from '../../components/Searchbar'
 import { Link } from 'react-router-dom'
-import noodles from '../../../public/images/noodles.png'
+import noodles from '../../assets/images/noodles.png'
 import { FaPlus } from "react-icons/fa";
 import { DeleteCategoryApi, GetAllCategoriesApi } from '../../api/category'
 import Loading from '../../components/Loading'

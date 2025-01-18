@@ -9,12 +9,17 @@ import AddProduct from '../view/product/AddProduct'
 import Category from '../view/product/Category'
 import AddCategory from '../view/product/AddCategory'
 import EditCategory from '../view/product/EditCategory'
+import Authentication from '../components/Authentication'
 
 const RouterPath = () => {
     const router = createBrowserRouter([
         {
             path: "/",
-            element: <Home />,
+            element: (
+                <Authentication>
+                    <Home />
+                </Authentication>
+            ),
         },
         {
             path: "/login",
@@ -22,31 +27,59 @@ const RouterPath = () => {
         },
         {
             path: "/product",
-            element: <Product />,
+            element: (
+                <Authentication>
+                    <Product />
+                </Authentication>
+            ),
         },
         {
             path: "/product/add",
-            element: <AddProduct />,
+            element: (
+                <Authentication>
+                    <AddProduct />
+                </Authentication>
+            ),
         },
         {
             path: "/product/category",
-            element: <Category/>
+            element: (
+                <Authentication>
+                    <Category/>
+                </Authentication>
+            ),
         },
         {
             path: "/product/category/add",
-            element: <AddCategory/>
+            element: (
+                <Authentication>
+                    <AddCategory/>
+                </Authentication>
+            ),
         },
         {
             path: "/product/category/:id",
-            element: <EditCategory />
+            element: (
+                <Authentication>
+                    <EditCategory />
+                </Authentication>
+            ),
         },
         {
             path: "/history",
-            element: <History />,
+            element: (
+                <Authentication>
+                    <History />
+                </Authentication>
+            ),
         },
         {
             path: "/staff",
-            element: <Staff />,
+            element: (
+                <Authentication>
+                    <Staff />
+                </Authentication>
+            ),
         }
     ])
 

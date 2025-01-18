@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Logo from '../../../public/images/logo.png'
+import Logo from '../../assets/images/logo.png'
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { validationSchema } from '../../utils';
 import Swal from 'sweetalert2';
@@ -59,7 +59,7 @@ const Login = () => {
                                 <ErrorMessage component={"div"} className='text-red-500' name="password" />
                                 <div className='w-full flex items-center mt-[8px] gap-2'>
                                     <input className='w-[16px] h-[16px]' type="checkbox" id="remember" name="remember" />
-                                    <label for="remember">ຈື່ຂ້ອຍ</label>
+                                    <label htmlFor="remember">ຈື່ຂ້ອຍ</label>
                                 </div>
                                 <button type="submit" className='w-full bg-green-500 py-[8px] rounded-md text-white mt-[20px]'>ລ໋ອກອິນ</button>
                             </Form>

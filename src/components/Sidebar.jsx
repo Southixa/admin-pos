@@ -1,5 +1,5 @@
 import React from 'react'
-import Logo from '../../public/images/logo.png'
+import Logo from '../assets/images/logo.png'
 import { RiHandCoinLine } from "react-icons/ri";
 import { LuFileClock } from "react-icons/lu";
 import { FiFileText } from "react-icons/fi";

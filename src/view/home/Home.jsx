@@ -1,8 +1,8 @@
 import React from "react";
 import Sidebar from "../../components/Sidebar";
-import noodles from "../../../public/images/noodles.png";
+import noodles from "../../assets/images/noodles.png";
 import { FaBorderAll } from "react-icons/fa";
-import burger from "../../../public/images/burger.jpg"
+import burger from "../../assets/images/burger.jpg"
 import { FaChevronRight } from "react-icons/fa";
 import MenuDrawer from "../../components/MenuDrawer";
 
