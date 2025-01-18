@@ -12,6 +12,12 @@ const MenuDrawer = () => {
   const uniqueCart = [...new Set(cart.map(item => item.menuID))]
     .map(id => cart.find(item => item.menuID === id));
 
+    const getItemAmount = (id) => cart.filter(item => item.menuID === id).length
+
+    const getTotalPrice = (id) => cart.filter(item => item.menuID === id).reduce((total, item) => total + item.price, 0);
+
+    const getTotalPriceToPay = () => cart.reduce((total, item) => total + item.price, 0);
+
     const handleCancel = () => {
         Swal.fire({
             title: "ທ່ານຕ້ອງການຍົກເລີກອໍເດີ້ນີ້ແມ່ນບໍ່?",
@@ -72,7 +78,7 @@ const MenuDrawer = () => {
             <button className=" py-[8px] w-full rounded-lg">ກັບບ້ານ</button>
           </div>
           <div className="w-full h-[300px]  mt-[40px] overflow-y-scroll">
-            {cart.map((item, index) => (
+            {uniqueCart.map((item, index) => (
               <div key={index} className='w-full bg-white flex justify-between gap-2 p-[8px] border border-gray-200 rounded-md'>
                 <div className="size-[80px] bg-gray-800 rounded-md overflow-hidden">
                   <img src={item.image} alt='product' className="w-full h-full object-cover" />
@@ -81,16 +87,16 @@ const MenuDrawer = () => {
                   <p>{item.name}</p>
                   <p className="text-gray-500 text-[12px] mt-[14px] ml-[6px]">ຈຳນວນ</p>
                   <div className="w-[100px] flex">
-                      <button className="bg-red-500 rounded-full size-[24px] text-white">-</button>
+                      <button onClick={() => removeFromCart(item.menuID)} className="bg-red-500 rounded-full size-[24px] text-white">-</button>
                       <div className="min-w-[40px] flex justify-center items-center">
-                        1
+                        {getItemAmount(item.menuID)}
                       </div>
-                      <button className="bg-green-500 rounded-full size-[24px] text-white">+</button>
+                      <button onClick={() => addToCart(item)} className="bg-green-500 rounded-full size-[24px] text-white">+</button>
                   </div>
                 </div>
                 <div className="min-w-[100px] flex flex-col justify-between items-end">
                     <p className="text-[14px] text-gray-600">{formatCurrency(item.price)} ກີບ</p>
-                    <p className="text-[14px] text-gray-600">50,000 ກີບ</p>
+                    <p className="text-[14px] text-gray-600">{formatCurrency(getTotalPrice(item.menuID))} ກີບ</p>
                 </div>
               </div>
             ))}
@@ -108,7 +114,7 @@ const MenuDrawer = () => {
         </div>
         <div className='w-full mt-[16px] rounded-lg bg-gray-200 px-[8px] py-[16px] flex justify-between'>
             <p>ລາຄາລວມ</p>
-            <p>250,000 ກີບ</p>
+            <p>{formatCurrency(getTotalPriceToPay())} ກີບ</p>
         </div>
         <button onClick={()=>handleCancel()} className='w-full py-[10px] bg-red-500 text-white rounded-lg mt-[12px]'>ຍົກເລີກອໍເດີ</button>
         <button onClick={()=>handleConfirm()} className='w-full py-[10px] bg-green-500 text-white rounded-lg mt-[8px]'>ຊຳລະເງິນ</button>
