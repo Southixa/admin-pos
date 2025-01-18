@@ -83,7 +83,7 @@ const Home = () => {
       </div>
 
         <div className="w-full mt-[20px] grid grid-cols-12 gap-10">
-          {products.map((item, index) => (
+          {filteredProductsByCategoryId.map((item, index) => (
             <div key={index} className="col-span-3 w-full min-h-[300px] bg-white rounded-2xl shadow-md p-[16px]">
               <div className="w-full h-[160px] bg-gray-200 rounded-md">
                 <img src={item.image} alt="product" className="w-full h-full object-cover rounded-md" />
