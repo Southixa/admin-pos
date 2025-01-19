@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import Sidebar from '../../components/Sidebar'
 import { IoMenu } from 'react-icons/io5'
 import { GetAllSalesApi } from '../../api/sale'
@@ -30,6 +30,13 @@ const History = () => {
   useEffect(() => {
       getData();
   }, [])
+
+
+  const filteredSales = useMemo(() => {
+    if(range === "all") return sales;
+    if(range === "day") return sales.filter((sale) => new Date(sale.createdAt).toDateString() === new Date().toDateString());
+    if(range === "month") return sales.filter((sale) => new Date(sale.createdAt).getMonth() === new Date().getMonth());
+  }, [sales, range])
 
   const getAllTotalSalesPrice = sales.reduce((total, item) => total + item.priceTotal, 0);
 
