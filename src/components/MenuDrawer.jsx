@@ -4,6 +4,7 @@ import burger from "../assets/images/burger.jpg"
 import Swal from 'sweetalert2'
 import { useMenuDrawerStore } from '../store'
 import { formatCurrency } from '../helpers'
+import { AddSaleApi } from '../api/sale'
 
 const MenuDrawer = () => {
 
@@ -43,6 +44,7 @@ const MenuDrawer = () => {
     }
 
     const handleConfirm = () => {
+        if(cart.length === 0) return
         Swal.fire({
             title: "ທ່ານຕ້ອງການຢືນຢັນການຊຳລະອໍເດີ້ນີ້ແມ່ນບໍ່?",
             icon: "warning",
@@ -52,7 +54,8 @@ const MenuDrawer = () => {
             confirmButtonText: "ຕົກລົງ",
             cancelButtonText: "ຍົກເລີກ"
           }).then( async (result) => {
-            const resAddSale = await AddSaleApi();
+            const resAddSale = await AddSaleApi(paymentType, addressType, getTotalPriceToPay());
+            console.log("resAddSale => ", resAddSale);
           });
     }
 
