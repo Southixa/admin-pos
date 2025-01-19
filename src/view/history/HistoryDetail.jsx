@@ -7,6 +7,7 @@ import Logo from '../../assets/images/logo.png'
 import { timeFormatter } from '../../helpers';
 import { GetAllSaleDetailsBySaleIdApi } from '../../api/saleDetail';
 import Swal from 'sweetalert2';
+import js from '@eslint/js';
 
 export const HistoryDetail = () => {
 
@@ -30,7 +31,9 @@ export const HistoryDetail = () => {
                 return;
             }
             setSale(resSale);
-            setSaleDetails(resSaleDetails);
+            if(resSaleDetails) {
+                setSaleDetails(resSaleDetails);
+            }
         }
         getData();
     }, [])
