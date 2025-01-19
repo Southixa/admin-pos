@@ -38,7 +38,7 @@ const History = () => {
     if(range === "month") return sales.filter((sale) => new Date(sale.createdAt).getMonth() === new Date().getMonth());
   }, [sales, range])
 
-  const getAllTotalSalesPrice = sales.reduce((total, item) => total + item.priceTotal, 0);
+  const getAllTotalSalesPrice = filteredSales.reduce((total, item) => total + item.priceTotal, 0);
 
 
   return (
@@ -81,7 +81,7 @@ const History = () => {
             </tr>
           </thead>
           <tbody>
-            {sales.map((item, index) => (
+            {filteredSales.map((item, index) => (
               <tr key={index} className='border-b border-gray-500'>
                 <td>{index + 1}</td>
                 <td className='py-[20px]'>
@@ -90,6 +90,7 @@ const History = () => {
                 <td>{item.paymentType}</td>
                 <td>{formatCurrency(item.priceTotal)} ກີບ</td>
                 <td>{item.status}</td>
+                <td>{item.createdAt}</td>
                 <td className='w-[150px]'>
                   <button className='px-[16px] py-[4px] bg-green-500 rounded-md text-white'>
                     ລາຍລະອຽດ
