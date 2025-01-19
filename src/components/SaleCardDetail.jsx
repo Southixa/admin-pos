@@ -23,6 +23,10 @@ const SaleCardDetail = ({ id, amount = 0 }) => {
         getData();
     }, [])
 
+    if(!product?.menuID){
+        return <></>
+    }
+
   return (
     <div className='w-full bg-white flex justify-between gap-2 p-[8px] border border-gray-200 rounded-md'>
         <div className="size-[80px] bg-gray-800 rounded-md overflow-hidden">

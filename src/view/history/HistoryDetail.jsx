@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../../components/Sidebar'
 import { FaChevronLeft } from 'react-icons/fa6'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { GetOneSaleApi } from '../../api/sale';
 import Logo from '../../assets/images/logo.png'
 import { timeFormatter } from '../../helpers';
 import { GetAllSaleDetailsBySaleIdApi } from '../../api/saleDetail';
 import Swal from 'sweetalert2';
 import js from '@eslint/js';
+import SaleCardDetail from '../../components/SaleCardDetail';
 
 export const HistoryDetail = () => {
+
+    const navigate = useNavigate();
 
     const { id } = useParams();
 
@@ -59,6 +62,13 @@ export const HistoryDetail = () => {
                 <div className='text-[12px] mt-[8px]'>
                     <p>ສະຖານທີ: ທົ່ງສາງນາງ</p>
                     <p>ເບີໂທຕິດຕໍ່: 020 91535495</p>
+                </div>
+                <div className='mt-8 min-h-[300px]'>
+                    {saleDetails.map((item, index) => (
+                        <div key={index}>
+                            <SaleCardDetail amount={item?.amount} id={item?.menuID} />
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>
