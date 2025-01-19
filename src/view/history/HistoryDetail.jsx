@@ -72,7 +72,7 @@ export const HistoryDetail = () => {
                 </div>
                 <div className='w-full px-[12px] py-[12px] rounded-md bg-gray-200 flex justify-between'>
                     <p>ລາຄາລວມ</p>
-                    <p>{formatCurrency(sale?.total)} ກີບ</p>
+                    <p>{formatCurrency(sale?.priceTotal)} ກີບ</p>
                 </div>
                 <div className='w-full px-[16px] py-[14px] bg-green-400 text-center rounded-md mt-4 text-white'>
                     <p>{sale?.paymentType}</p>
