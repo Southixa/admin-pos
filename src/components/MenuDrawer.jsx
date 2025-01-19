@@ -29,6 +29,7 @@ const MenuDrawer = () => {
             cancelButtonText: "ຍົກເລີກ"
           }).then((result) => {
             if (result.isConfirmed) {
+              clearCart();
               Swal.fire({
                 title: "ຍົກເລີກສຳເລັດ!",
                 text: "ທ່ານໄດ້ຍົກເລີກອໍເລີກສຳເລັດ.",
