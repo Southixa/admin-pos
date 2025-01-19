@@ -2,9 +2,12 @@ import React, { useEffect, useMemo, useState } from 'react'
 import Sidebar from '../../components/Sidebar'
 import { IoMenu } from 'react-icons/io5'
 import { GetAllSalesApi } from '../../api/sale'
-import { formatCurrency } from '../../helpers'
+import { formatCurrency, timeFormatter } from '../../helpers'
+import { useNavigate } from 'react-router-dom'
 
 const History = () => {
+
+  const navigate = useNavigate();
 
   const [sales, setSales] = useState([])
   const [loading, setLoading] = useState(false)
@@ -90,9 +93,9 @@ const History = () => {
                 <td>{item.paymentType}</td>
                 <td>{formatCurrency(item.priceTotal)} ກີບ</td>
                 <td>{item.status}</td>
-                <td>{item.createdAt}</td>
+                <td>{timeFormatter(item.createdAt)}</td>
                 <td className='w-[150px]'>
-                  <button className='px-[16px] py-[4px] bg-green-500 rounded-md text-white'>
+                  <button onClick={() => navigate(`/history/detail/${item.saleID}`)} className='px-[16px] py-[4px] bg-green-500 rounded-md text-white'>
                     ລາຍລະອຽດ
                   </button>
                 </td>

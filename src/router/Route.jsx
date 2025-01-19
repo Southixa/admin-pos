@@ -10,6 +10,7 @@ import Category from '../view/product/Category'
 import AddCategory from '../view/product/AddCategory'
 import EditCategory from '../view/product/EditCategory'
 import Authentication from '../components/Authentication'
+import { HistoryDetail } from '../view/history/HistoryDetail'
 
 const RouterPath = () => {
     const router = createBrowserRouter([
@@ -70,6 +71,14 @@ const RouterPath = () => {
             element: (
                 <Authentication>
                     <History />
+                </Authentication>
+            ),
+        },
+        {
+            path: "/history/detail/:id",
+            element: (
+                <Authentication>
+                    <HistoryDetail />
                 </Authentication>
             ),
         },
