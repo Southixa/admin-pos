@@ -60,8 +60,21 @@ const MenuDrawer = () => {
             const resAddSaleDetail = await Promise.all(uniqueCart.map(async (item) => 
               await AddSaleDetailApi(item.menuID, saleID, getItemAmount(item.menuID)
             )));
-            console.log("resAddSale => ", resAddSale);
-            console.log("resAddSaleDetail => ", resAddSaleDetail);
+            const isResAddSaleDetailError = resAddSaleDetail.some((item) => item === undefined);
+            if(isResAddSaleDetailError) {
+              Swal.fire({
+              title: "ຜົດພາດ",
+              text: "ບໍສາມາດເພີ່ມອໍເດີ້ໄດ້",
+              icon: "error"
+              });
+            return;
+            }
+            Swal.fire({
+                title: "ສຳເລັດ",
+                text: "ເພີ່ມອໍເດີ້ສຳເລັດ",
+                icon: "success"
+                });
+            clearCart();
           });
     }
 
