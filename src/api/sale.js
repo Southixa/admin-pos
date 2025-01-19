@@ -16,3 +16,25 @@ export const AddSaleApi = async (paymentType, addressType, priceTotal) => {
         return undefined;
     }
 }
+
+export const GetAllSalesApi = async () => {
+    try {
+        const response = await axios.get(ApiPath.getAllSales, getHeaderConfig())
+        console.log("Res in GetAllSalesApi => ", response?.data?.data);
+        return response?.data?.data;
+    } catch (error) {
+        console.log("Error Occurred In GetAllSalesApi => ", error);
+        return undefined;
+    }
+}
+
+export const GetOneSaleApi = async (id) => {
+    try {
+        const response = await axios.get(`${ApiPath.getOneSale}${id}`, getHeaderConfig())
+        console.log("Res in GetOneSaleApi => ", response?.data?.data);
+        return response?.data?.data;
+    } catch (error) {
+        console.log("Error Occurred In GetOneSaleApi => ", error);
+        return undefined;
+    }
+}
