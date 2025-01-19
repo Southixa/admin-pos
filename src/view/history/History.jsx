@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Sidebar from '../../components/Sidebar'
 import { IoMenu } from 'react-icons/io5'
 import { GetAllSalesApi } from '../../api/sale'
+import { formatCurrency } from '../../helpers'
 
 const History = () => {
 
@@ -27,6 +28,8 @@ const History = () => {
   useEffect(() => {
       getData();
   }, [])
+
+  const getAllTotalSalesPrice = sales.reduce((total, item) => total + item.priceTotal, 0);
 
 
   return (
@@ -61,28 +64,40 @@ const History = () => {
           <thead>
             <tr className='border-b border-gray-800'>
               <td className='py-[4px]'>ລຳດັບ</td>
-              <td>ຊື່</td>
-              <td>ນາມສະກຸນ</td>
-              <td>ເບີໂທ</td>
-              <td>ສິດເຂົ້າໃຊ້</td>
-              <td>ແກ້ໄຂ</td>
+              <td>ກິນຢູ່</td>
+              <td>ຈ່າຍເງິນ</td>
+              <td>ລວມ</td>
+              <td>ສະຖານະ</td>
+              <td>ລາຍລະອຽດ</td>
             </tr>
           </thead>
           <tbody>
-            <tr className='border-b border-gray-500'>
-              <td>1</td>
-              <td className='py-[20px]'>
-                ສຸດທິຊາ
-              </td>
-              <td>ພິລາວົງ</td>
-              <td>5567487</td>
-              <td>Admin</td>
-              <td className='w-[150px]'>
-                <button className='px-[16px] py-[4px] bg-green-500 rounded-md text-white'>
-                  ແກ້ໄຂ
-                </button>
-              </td>
-            </tr>
+            {sales.map((item, index) => (
+              <tr key={index} className='border-b border-gray-500'>
+                <td>{index + 1}</td>
+                <td className='py-[20px]'>
+                  {item.addressType}
+                </td>
+                <td>{item.paymentType}</td>
+                <td>{formatCurrency(item.priceTotal)} ກີບ</td>
+                <td>{item.status}</td>
+                <td className='w-[150px]'>
+                  <button className='px-[16px] py-[4px] bg-green-500 rounded-md text-white'>
+                    ລາຍລະອຽດ
+                  </button>
+                </td>
+              </tr>
+            ))}
+              <tr className='border-b border-gray-500'>
+                <td>ຍອດລວມທັງໝົດ</td>
+                <td className='py-[20px]'>
+                </td>
+                <td></td>
+                <td>{formatCurrency(getAllTotalSalesPrice)} ກີບ</td>
+                <td></td>
+                <td className='w-[150px]'>
+                </td>
+              </tr>
           </tbody>
         </table>
       </div>
