@@ -4,7 +4,7 @@ import { FaChevronLeft } from 'react-icons/fa6'
 import { useNavigate, useParams } from 'react-router-dom';
 import { GetOneSaleApi } from '../../api/sale';
 import Logo from '../../assets/images/logo.png'
-import { timeFormatter } from '../../helpers';
+import { formatCurrency, timeFormatter } from '../../helpers';
 import { GetAllSaleDetailsBySaleIdApi } from '../../api/saleDetail';
 import Swal from 'sweetalert2';
 import js from '@eslint/js';
@@ -69,6 +69,13 @@ export const HistoryDetail = () => {
                             <SaleCardDetail amount={item?.amount} id={item?.menuID} />
                         </div>
                     ))}
+                </div>
+                <div className='w-full px-[12px] py-[12px] rounded-md bg-gray-200 flex justify-between'>
+                    <p>ລາຄາລວມ</p>
+                    <p>{formatCurrency(sale?.total)} ກີບ</p>
+                </div>
+                <div className='w-full px-[16px] py-[14px] bg-green-400 text-center rounded-md mt-4 text-white'>
+                    <p>{sale?.paymentType}</p>
                 </div>
             </div>
         </div>
