@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6'
 import burger from "../assets/images/burger.jpg"
 import Swal from 'sweetalert2'
@@ -8,6 +8,9 @@ import { formatCurrency } from '../helpers'
 const MenuDrawer = () => {
 
   const { isOpen, onOpen, onClose, cart, addToCart, removeFromCart, clearCart } = useMenuDrawerStore();
+
+  const [addressType, setAddressType] = useState("store");
+  const [paymentType, setPaymentType] = useState("cash");
 
   const uniqueCart = [...new Set(cart.map(item => item.menuID))]
     .map(id => cart.find(item => item.menuID === id));
@@ -48,8 +51,8 @@ const MenuDrawer = () => {
             cancelButtonColor: "#c1c1c1",
             confirmButtonText: "ຕົກລົງ",
             cancelButtonText: "ຍົກເລີກ"
-          }).then((result) => {
-            
+          }).then( async (result) => {
+            const resAddSale = await AddSaleApi();
           });
     }
 
@@ -75,8 +78,18 @@ const MenuDrawer = () => {
             </div>
           </div>
           <div className="w-full bg-gray-100 mt-[20px] rounded-lg flex border border-gray-200">
-            <button className="bg-green-300 border border-green-400 py-[8px] w-full rounded-lg">ກິນຢູ່ຮ້ານ</button>
-            <button className=" py-[8px] w-full rounded-lg">ກັບບ້ານ</button>
+            {addressType === "store" && (
+              <>
+                <button onClick={() => setAddressType("store")} className="bg-green-300 border border-green-400 py-[8px] w-full rounded-lg">ກິນຢູ່ຮ້ານ</button>
+                <button onClick={() => setAddressType("home")} className=" py-[8px] w-full rounded-lg">ກັບບ້ານ</button>
+              </>
+            )}
+            {addressType === "home" && (
+              <>
+                <button onClick={() => setAddressType("store")} className="py-[8px] w-full rounded-lg">ກິນຢູ່ຮ້ານ</button>
+                <button onClick={() => setAddressType("home")} className="  bg-green-300 border border-green-400 py-[8px] w-full rounded-lg">ກັບບ້ານ</button>
+              </>
+            )}
           </div>
           <div className="w-full h-[300px]  mt-[40px] overflow-y-scroll">
             {uniqueCart.map((item, index) => (
