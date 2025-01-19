@@ -20,7 +20,7 @@ export const AddSaleDetailApi = async (menuID, saleID, amount) => {
 
 export const GetAllSaleDetailsBySaleIdApi = async (saleID) => {
     try {
-        const response = await axios.get(`${ApiPath.getAllSaleDetailsBySaleId}${saleID}`, getHeaderConfig())
+        const response = await axios.get(`${ApiPath.getSaleDetailsBySale}${saleID}`, getHeaderConfig())
         console.log("Res in GetAllSaleDetailsBySaleIdApi => ", response?.data?.data);
         return response?.data?.data;
     } catch (error) {
