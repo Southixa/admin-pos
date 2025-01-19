@@ -5,6 +5,7 @@ import Swal from 'sweetalert2'
 import { useMenuDrawerStore } from '../store'
 import { formatCurrency } from '../helpers'
 import { AddSaleApi } from '../api/sale'
+import { AddSaleDetailApi } from '../api/saleDetail'
 
 const MenuDrawer = () => {
 
@@ -55,7 +56,12 @@ const MenuDrawer = () => {
             cancelButtonText: "ຍົກເລີກ"
           }).then( async (result) => {
             const resAddSale = await AddSaleApi(paymentType, addressType, getTotalPriceToPay());
+            const saleID = resAddSale?.data?.saleID;
+            const resAddSaleDetail = await Promise.all(uniqueCart.map(async (item) => 
+              await AddSaleDetailApi(item.menuID, saleID, getItemAmount(item.menuID)
+            )));
             console.log("resAddSale => ", resAddSale);
+            console.log("resAddSaleDetail => ", resAddSaleDetail);
           });
     }
 

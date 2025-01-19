@@ -9,7 +9,7 @@ export const AddSaleDetailApi = async (menuID, saleID, amount) => {
         amount
     }
     try {
-        const response = await axios.post(ApiPath.insertSale, data, getHeaderConfig("multipart/form-data"))
+        const response = await axios.post(ApiPath.insertSaleDetail, data, getHeaderConfig())
         console.log("Res in AddSaleDetailApi => ", response?.data);
         return response?.data
     } catch (error) {
