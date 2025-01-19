@@ -5,17 +5,23 @@ import { useParams } from 'react-router-dom';
 import { GetOneSaleApi } from '../../api/sale';
 import Logo from '../../assets/images/logo.png'
 import { timeFormatter } from '../../helpers';
+import { GetAllSaleDetailsBySaleIdApi } from '../../api/saleDetail';
+import Swal from 'sweetalert2';
 
 export const HistoryDetail = () => {
 
     const { id } = useParams();
 
     const [sale, setSale] = useState({});
+    const [saleDetails, setSaleDetails] = useState([]);
 
     useEffect(() => {
         const getData = async () => {
-            const res = await GetOneSaleApi(id);
-            if(!res) {
+            const [resSale, resSaleDetails] = await Promise.all([
+                GetOneSaleApi(id),
+                GetAllSaleDetailsBySaleIdApi(id)
+              ]);
+            if(!resSale) {
                 Swal.fire({
                     icon: "error",
                     title: "ຜິດພາດ",
@@ -23,7 +29,8 @@ export const HistoryDetail = () => {
                   });
                 return;
             }
-            setSale(res);
+            setSale(resSale);
+            setSaleDetails(resSaleDetails);
         }
         getData();
     }, [])
