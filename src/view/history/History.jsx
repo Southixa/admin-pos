@@ -1,8 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Sidebar from '../../components/Sidebar'
 import { IoMenu } from 'react-icons/io5'
+import { GetAllSalesApi } from '../../api/sale'
 
 const History = () => {
+
+  const [sales, setSales] = useState([])
+  const [loading, setLoading] = useState(false)
+
+  const getData = async () => {
+      setLoading(true);
+      const res = await GetAllSalesApi();
+      if(!res) {
+          Swal.fire({
+              icon: "error",
+              title: "ຜິດພາດ",
+              text: "ບໍ່ສາມາດດຶງຂໍ້ມູນໄດ້",
+            });
+          setLoading(false);
+          return;
+      }
+      setSales(res);
+      setLoading(false);
+  }
+
+  useEffect(() => {
+      getData();
+  }, [])
+
+
   return (
     <Sidebar>
         <div className='w-full flex justify-between gap-4'>
