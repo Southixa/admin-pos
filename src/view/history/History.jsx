@@ -9,6 +9,8 @@ const History = () => {
   const [sales, setSales] = useState([])
   const [loading, setLoading] = useState(false)
 
+  const [range, setRange] = useState("all")
+
   const getData = async () => {
       setLoading(true);
       const res = await GetAllSalesApi();
@@ -41,14 +43,14 @@ const History = () => {
             </button>
           </div>
           <div className='flex gap-3'>
-            <button className='bg-green-500 px-[24px] py-[8px] rounded-md'>
+            <button onClick={() => setRange("all")} className={`px-[24px] py-[8px] rounded-md ${ range === "all" ? "bg-green-500 text-white" : "bg-white text-green-500"}`}>
               ອໍເດີ້ທັງໝົດ
             </button>
-            <button className='bg-white px-[24px] py-[8px] rounded-md text-green-500'>
-              ອໍເດີ້ທັງໝົດ
+            <button onClick={() => setRange("day")} className={`px-[24px] py-[8px] rounded-md ${ range === "day" ? "bg-green-500 text-white" : "bg-white text-green-500"}`}>
+              ອໍເດີ້ມີ້ນີ້
             </button>
-            <button className='bg-white px-[24px] py-[8px] rounded-md text-green-500'>
-              ອໍເດີ້ທັງໝົດ
+            <button onClick={() => setRange("month")} className={`px-[24px] py-[8px] rounded-md ${ range === "month" ? "bg-green-500 text-white" : "bg-white text-green-500"}`}>
+              ອໍເດີ້ເດີອນນີ້
             </button>
           </div>
           <div className='flex gap-2 items-center'>
